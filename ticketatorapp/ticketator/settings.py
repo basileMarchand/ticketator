@@ -73,12 +73,8 @@ WSGI_APPLICATION = 'ticketator.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRES_DB', 'tickets_db'),
-        'USER': os.getenv('POSTGRES_USER', 'ticket_user_db'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'ticket4everyone'),
-        'HOST': os.getenv('POSTGRES_HOST', '127.0.0.1'),
-        'PORT': os.getenv('POSTGRES_PORT', '5432'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.getenv(BASE_DIR, 'tickets.sqlite3'),
     }
 }
 
