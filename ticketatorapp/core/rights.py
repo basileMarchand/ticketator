@@ -1,5 +1,5 @@
 from django.contrib.auth.models import Group
-import models
+import core.models as models
 from django.db.models import Q
 
 """

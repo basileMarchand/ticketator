@@ -13,9 +13,9 @@ def abssub(value, arg):
 
 
 def paginate(queryset, page, limit=settings.PAGINATE_BY):
-    start = (page - 1) * limit
-    end = (page * limit)
-    page_count = queryset.count() / limit
+    start = int((page - 1) * limit)
+    end = int((page * limit))
+    page_count = int(queryset.count() / limit)
     queryset = queryset[start:end]
     return queryset, {
         'page': page,
@@ -28,8 +28,8 @@ def paginate(queryset, page, limit=settings.PAGINATE_BY):
 def query_view(
         model, params, order_by='-id', granted_queues=None,
         limit=settings.PAGINATE_BY, **kwargs):
-    params = {key: value for key, value in params.iteritems() if value}
-    params.update({key: value for key, value in kwargs.iteritems() if value})
+    params = {key: value for key, value in params.items() if value}
+    params.update({key: value for key, value in kwargs.items() if value})
     try:
         page = int(params.pop('page', 1))
     except ValueError:
@@ -47,5 +47,5 @@ def query_view(
         'data': data,
         'pagination': pagination,
         'query': '&'.join(['%s=%s' % (key, value)
-                           for key, value in params.iteritems()])
+                           for key, value in params.items()])
     }
