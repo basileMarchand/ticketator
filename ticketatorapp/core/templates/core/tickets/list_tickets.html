@@ -64,7 +64,7 @@
               <tr class="odd gradeX">
                 <td class="text-center" style="vertical-align:middle"><a href="{% url 'tickets-view' ticket.id %}">{{ ticket.id }}</a></td>
                 <td class="text-center" style="vertical-align:middle"><a href="{% url 'tickets-view' ticket.id %}">{{ ticket.subject }}</a></td>
-                <td class="text-center" style="vertical-align:middle"><span class="label" style="background-color:{{ ticket.assigned_state.color }}"><font color="black">{{ ticket.assigned_state }}</font></span></td>
+                <td class="text-center" style="vertical-align:middle"><span class="label" style="background-color:{{ ticket.assigned_state.color }}"><font color="black">{{ ticket.assigned_state.name }}</font></span></td>
                 <td class="text-center" style="vertical-align:middle">{% if ticket.assigned_queue %}{{ ticket.assigned_queue.shortcode }}{% else %}{% endif %}</td>
                 <td class="text-center" style="vertical-align:middle">{{ ticket.create_user }}</td>
                 <td class="text-center" style="vertical-align:middle">{{ ticket.created|date:"d/m/y G:i:s" }}</td>

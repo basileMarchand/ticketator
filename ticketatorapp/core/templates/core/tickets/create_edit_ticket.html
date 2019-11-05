@@ -116,9 +116,9 @@
                   {% all_queues_for_user "cv_cc" as queues %}
                   {% for queue in queues %}
                   {% if queue.id == form_ticket.instance.assigned_queue.id %}
-                  <option value="{{queue.id}}" selected >{{queue}}</option>
+                  <option value="{{queue.id}}" selected >{{queue.name}}</option>
                   {% else %}
-                  <option value="{{queue.id}}" >{{queue}}</option>
+                  <option value="{{queue.id}}" >{{queue.name}}</option>
                   {% endif %}
                   {%endfor%}
 
@@ -127,9 +127,9 @@
                   {% all_queues_for_user "can_create" as queues %}
                   {% for queue in queues %}
                   {% if queue.id == form_ticket.instance.assigned_queue.id %}
-                  <option value="{{queue.id}}" selected >{{queue}}</option>
+                  <option value="{{queue.id}}" selected >{{queue.name}}</option>
                   {% else %}
-                  <option value="{{queue.id}}" >{{queue}}</option>
+                  <option value="{{queue.id}}" >{{queue.name}}</option>
                   {% endif %}
                   {%endfor%}
                   {%endif%}
@@ -144,9 +144,9 @@
                 <select class="form-control pointer" id="id_tciket-assigned_state" name="ticket-assigned_state">
                   {% for status in common_data.status_info %}
                   {%if status.id  == form_ticket.instance.assigned_state.id %}
-                  <option value="{{status.id}}" selected >{{status}}</option>
+                  <option value="{{status.id}}" selected >{{status.name}}</option>
                   {%else%}
-                  <option value="{{status.id}}">{{status}}</option>
+                  <option value="{{status.id}}">{{status.name}}</option>
                   {%endif%}
                   {%endfor%}
                 </select>
@@ -176,9 +176,9 @@
                 <select class="form-control pointer" id="id_assigned_prio" name="ticket-assigned_prio" >
                   {% for prio in common_data.prio_info %}
                   {%if prio.id  == form_ticket.instance.assigned_prio.id %}
-                  <option value="{{prio.id}}" selected >{{prio}}</option>
+                  <option value="{{prio.id}}" selected >{{prio.name}}</option>
                   {%else%}
-                  <option value="{{prio.id}}">{{prio}}</option>
+                  <option value="{{prio.id}}">{{prio.name}}</option>
                   {%endif%}
                   {%endfor%}
                 </select>

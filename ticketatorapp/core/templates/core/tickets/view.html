@@ -101,7 +101,7 @@
                   {% all_queues_for_user "cv_cc" as queues %}
                   {% for queue in queues %}
                   {% if queue.id == form_ticket.instance.assigned_queue.id %}
-                  <input class="form-control pointer" id="id_ticket-assigned_queue" name="ticket-assigned_queue" value="{{ queue }}" disabled></input>
+                  <input class="form-control pointer" id="id_ticket-assigned_queue" name="ticket-assigned_queue" value="{{ queue.name }}" disabled></input>
                   {% endif %}
                   {% endfor %}
 
@@ -115,7 +115,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12 ">
                 {% for status in common_data.status_info %}
                 {% if status.id  == form_ticket.instance.assigned_state.id %}
-                <input class="form-control pointer" id="id_tciket-assigned_state" name="ticket-assigned_state" value="{{ status }}" disabled></input>
+                <input class="form-control pointer" id="id_tciket-assigned_state" name="ticket-assigned_state" value="{{ status.name }}" disabled></input>
                 {% endif %}
                 {% endfor %}
 
@@ -143,7 +143,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                 {% for prio in common_data.prio_info %}
                 {% if prio.id  == form_ticket.instance.assigned_prio.id %}
-                <inpunt class="form-control pointer" value="{{prio}}" disabled >{{ prio }}</input>
+                <inpunt class="form-control pointer" value="{{prio}}" disabled >{{ prio.name }}</input>
                   {% endif %}
                   {% endfor %}
                 </div>

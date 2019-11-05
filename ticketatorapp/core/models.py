@@ -76,6 +76,9 @@ class Company(TimeStampedModelMixin):
     def __unicode__(self):
         return self.name
 
+    def __str__(self):
+        return self.name 
+
 
 # => Queues (ex Departments)
 class Queue(TimeStampedModelMixin):
@@ -89,6 +92,11 @@ class Queue(TimeStampedModelMixin):
     def __unicode__(self):
         return self.name
 
+    def __repr__(self):
+        return self.name 
+
+    def __str__(self):
+        return self.name 
 
 # => Groups
 # Group's rights
@@ -157,6 +165,12 @@ class State(TimeStampedModelMixin):
         super(State, self).save(*args, **kwargs)
 
     def __unicode__(self):
+        return self.name
+
+    def __repr__(self):
+        return self.name
+
+    def __str__(self):
         return self.name
 
 

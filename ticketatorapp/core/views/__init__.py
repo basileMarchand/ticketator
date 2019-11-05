@@ -25,7 +25,7 @@ def index(request):
     open_tickets = query_view(
         Ticket, request.GET, granted_queues=queues, assigned_state=1, limit=5)
     pending_tickets = query_view(
-        Ticket, request.GET, granted_queues=queues, assigned_state=2, limit=5)
+        Ticket, request.GET, granted_queues=queues, assigned_state=3, limit=5)
     my_tickets = query_view(
         Ticket, request.GET, granted_queues=queues, assigned_user_id=request.user.id, limit=5)
 

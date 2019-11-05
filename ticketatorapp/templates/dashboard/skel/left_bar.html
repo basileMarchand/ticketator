@@ -32,7 +32,7 @@
             {% all_states as states %}
             {% for state in states %}
               <li>
-                <a href="{% url 'tickets-list-state' state.id %}">{{ state }} tickets</a>
+                <a href="{% url 'tickets-list-state' state.id %}">{{ state.name }} tickets</a>
               </li>
             {% endfor %}
           </ul>
