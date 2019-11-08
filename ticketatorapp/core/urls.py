@@ -26,8 +26,8 @@ urlpatterns = [
     url(r'^settings/$', settings, name='tickets-settings'),
 
     # Auth
-    url(r'^login/$', auth_views.login, {'template_name': 'auth/login.html'}, name='login'),
-    url(r'^logout/$', auth_views.logout, name='logout'),
+    url(r'^login/$', auth_views.LoginView.as_view(template_name="auth/login.html"), name='login'),
+    url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
 
     # Users
     url(r'^settings/user/$', vusers.list_users, name='user-list'),

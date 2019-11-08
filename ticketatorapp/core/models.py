@@ -106,13 +106,15 @@ class Rights(TimeStampedModelMixin):
         Group,
         related_name="src_grp",
         blank=True,
-        null=True
+        null=True,
+        on_delete=models.DO_NOTHING
     )
     queue_dst = models.ForeignKey(
         Queue,
         related_name="dst_queue",
         blank=True,
-        null=True
+        null=True,
+        on_delete=models.DO_NOTHING
     )
     # Permited actions
     can_view = models.BooleanField(default=False)
@@ -185,13 +187,13 @@ class Priority(TimeStampedModelMixin):
 # => Inventory Servers/PC
 class InventoryGroup(TimeStampedModelMixin):
     name = models.CharField(max_length=100)
-    company_rel = models.ForeignKey(Company, null=True)
+    company_rel = models.ForeignKey(Company, null=True, on_delete=models.DO_NOTHING)
 
 
 class Inventory(TimeStampedModelMixin):
     name = models.CharField(max_length=100)
     ip = models.GenericIPAddressField(protocol='ipv4')
-    group_rel = models.ForeignKey(InventoryGroup, null=True)
+    group_rel = models.ForeignKey(InventoryGroup, null=True,on_delete=models.DO_NOTHING)
 
 
 # => Tickets
@@ -201,6 +203,7 @@ class Ticket(TimeStampedModelMixin):
         related_name="c_user",
         blank=True,
         null=True,
+        on_delete=models.DO_NOTHING
     )
     subject = models.CharField(max_length=40)
     body = models.TextField(
@@ -211,24 +214,28 @@ class Ticket(TimeStampedModelMixin):
         User,
         blank=True,
         null=True,
-        related_name="a_user"
+        related_name="a_user",
+        on_delete=models.DO_NOTHING
     )
     assigned_queue = models.ForeignKey(
         Queue,
         blank=True,
-        null=True
+        null=True,
+        on_delete=models.DO_NOTHING
     )
     assigned_company = models.ForeignKey(
         Company,
         blank=True,
-        null=True
+        null=True,
+        on_delete=models.DO_NOTHING
     )
-    assigned_state = models.ForeignKey(State)
-    assigned_prio = models.ForeignKey(Priority)
+    assigned_state = models.ForeignKey(State, on_delete=models.DO_NOTHING)
+    assigned_prio = models.ForeignKey(Priority, on_delete=models.DO_NOTHING)
     assigned_inventory = models.ForeignKey(
         Inventory,
         null=True,
-        blank=True
+        blank=True,
+        on_delete=models.DO_NOTHING
     )
     percentage = models.IntegerField(
         default=0,
@@ -298,7 +305,7 @@ def get_attachment_upload_path(instance, filename):
 
 class Attachment(TimeStampedModelMixin):
 
-    ticket_rel = models.ForeignKey(Ticket, null=True, blank=True)
+    ticket_rel = models.ForeignKey(Ticket, null=True, blank=True, on_delete=models.DO_NOTHING)
     file_name = models.FileField(
         upload_to=get_attachment_upload_path, null=True, blank=True)
 
@@ -314,8 +321,8 @@ class AttachmentForm(ModelForm):
 
 # => Comments
 class Comments(TimeStampedModelMixin):
-    ticket_rel = models.ForeignKey(Ticket, related_name='ticket_rel_comm')
-    user_rel = models.ForeignKey(User, related_name='user_rel_comm')
+    ticket_rel = models.ForeignKey(Ticket, related_name='ticket_rel_comm', on_delete=models.DO_NOTHING)
+    user_rel = models.ForeignKey(User, related_name='user_rel_comm', on_delete=models.DO_NOTHING)
     comment = models.TextField(null=True, blank=True)
     private = models.BooleanField(default=False)
 
@@ -338,10 +345,10 @@ class Comments(TimeStampedModelMixin):
 
 
 class Microtasks(TimeStampedModelMixin):
-    ticket_rel = models.ForeignKey(Ticket, related_name='ticket_rel_mtask')
+    ticket_rel = models.ForeignKey(Ticket, related_name='ticket_rel_mtask', on_delete=models.DO_NOTHING)
     subject = models.CharField(max_length=40)
     body = models.TextField(null=True, blank=True)
-    assigned_state = models.ForeignKey(State, null=True, blank=True)
+    assigned_state = models.ForeignKey(State, null=True, blank=True, on_delete=models.DO_NOTHING)
     percentage = models.IntegerField(default=0, blank=True, null=True)
 
     def as_json(self):
@@ -359,7 +366,7 @@ class Microtasks(TimeStampedModelMixin):
 
 
 class Logs(TimeStampedModelMixin):
-    log_ticket = models.ForeignKey(Ticket, related_name='ticket_log')
-    log_user = models.ForeignKey(User, related_name='user_log')
+    log_ticket = models.ForeignKey(Ticket, related_name='ticket_log', on_delete=models.DO_NOTHING)
+    log_user = models.ForeignKey(User, related_name='user_log', on_delete=models.DO_NOTHING)
     log_action = models.CharField(max_length=200)
     log_destiny = models.CharField(max_length=200)

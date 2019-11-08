@@ -260,7 +260,7 @@
                   <div class="col-sm-1">
 
                       {% if comm.user_rel.avatar %}
-                      <img alt="Avatar" class="avatar" src="{{ comm.user_rel.avatar.url }}">
+                      <img alt="{{ comm.user_rel.avatar.url }}" class="avatar" src="{{ comm.user_rel.avatar.url }}">
                       {% else %}
                       <img alta="Avatar" class="avatar" src="{% static 'images/user.png' %}">
                       {%endif%}
